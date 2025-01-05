@@ -2,6 +2,7 @@ import app.keyboards as k
 from app.filters import IsAdmin
 
 import logging
+import asyncio
 
 from aiogram import F, Router, Bot, Dispatcher
 from aiogram.types import Message, CallbackQuery
@@ -16,10 +17,11 @@ router = Router()
 # stopping the bot
 
 @router.message(IsAdmin(), F.text.casefold() == 'stop')
-async def cmd_stop(message: Message, dp: Dispatcher, bot: Bot):
+async def cmd_stop(message: Message, bot: Bot):
     await message.answer('Stopping the bot...')
-
     logging.warning('Stopping the bot...')
-    await dp.stop_polling()
+
+    loop = asyncio.get_event_loop()
+    loop.stop()
     await bot.session.close()
     logging.warning('Bot Stopped')
