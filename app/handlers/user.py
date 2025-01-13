@@ -1,5 +1,6 @@
 import app.keyboards as k
 import app.database.requests as rq
+from app import utils
 
 from aiogram import F, Router
 from aiogram.types import Message, CallbackQuery
@@ -12,7 +13,7 @@ router = Router()
 
 
 
-# starting the bot
+# starting the bot and main navigation
 
 @router.message(Command('start'))
 async def cmd_start(message: Message):
@@ -23,3 +24,8 @@ async def cmd_start(message: Message):
 @router.message(Command('menu'))
 async def cmd_menu(message: Message):
     await message.answer('Main menu')
+
+
+@router.message(Command('help'))
+async def cmd_help(message: Message):
+    await message.answer(f'Available commands:\n{utils.display_commands()}')

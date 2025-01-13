@@ -1,32 +1,20 @@
 from app.handlers import user, admin, payments
 from app.database.models import async_main
+from app.utils import commands
+from bot import bot, dp
 import app.middlewares as middlewares
 
 import asyncio
 import logging
-import os
 
-from dotenv import load_dotenv
-
-from aiogram import Dispatcher, Bot
-from aiogram.types import BotCommand, BotCommandScopeDefault
-
-
-
-commands = [
-    BotCommand(command = 'start', description = 'Starts the bot'),
-    BotCommand(command = 'menu', description = 'Shows the main menu'),
-]
+from aiogram.types import BotCommandScopeDefault
 
 
 
 async def main():
     await async_main()
-    load_dotenv()
 
     logging.basicConfig(level=logging.INFO)
-    bot = Bot(token=os.getenv('BOT_TOKEN'))
-    dp = Dispatcher()
 
     # dp.update.middleware(middleware)
     dp.message.middleware(middlewares.CancelMiddleware())
