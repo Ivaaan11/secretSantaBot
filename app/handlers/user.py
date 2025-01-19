@@ -18,14 +18,26 @@ router = Router()
 @router.message(Command('start'))
 async def cmd_start(message: Message):
     await rq.add_new_user(message.from_user.id, message.from_user.username)
-    await message.answer(f'Hello {message.from_user.first_name}!')
+    await message.answer(f'Hello {message.from_user.first_name}! 👋')
 
 
 @router.message(Command('menu'))
 async def cmd_menu(message: Message):
-    await message.answer('Main menu')
+    await message.answer('Main menu ⌨️', reply_markup=k.yes_no_keyboard())
 
 
 @router.message(Command('help'))
 async def cmd_help(message: Message):
-    await message.answer(f'Available commands:\n{utils.display_commands()}')
+    await message.answer(f'Available commands: 📟\n{utils.display_commands()}')
+
+
+
+# echo
+
+@router.message()
+async def echo_message(message: Message):
+    await message.answer('Unknown command 🤔\nType /help to view the list of commands')
+
+@router.callback_query()
+async def echo_callback(callback: CallbackQuery):
+    await callback.answer()

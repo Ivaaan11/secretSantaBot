@@ -18,7 +18,7 @@ router = Router()
 
 @router.message(IsAdmin(), F.text.casefold() == 'stop')
 async def cmd_stop(message: Message, bot: Bot):
-    await message.answer('Stopping the bot...')
+    await message.answer('Stopping the bot... ⛓️‍💥')
     logging.warning('Stopping the bot...')
 
     loop = asyncio.get_event_loop()
