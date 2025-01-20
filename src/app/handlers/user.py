@@ -23,12 +23,12 @@ async def cmd_start(message: Message):
 
 @router.message(Command('menu'))
 async def cmd_menu(message: Message):
-    await message.answer('Main menu ⌨️', reply_markup=k.yes_no_keyboard())
+    await message.answer('💻 Main menu')
 
 
 @router.message(Command('help'))
 async def cmd_help(message: Message):
-    await message.answer(f'Available commands: 📟\n{utils.display_commands()}')
+    await message.answer(f'📱 Available commands:\n{utils.display_commands()}')
 
 
 
