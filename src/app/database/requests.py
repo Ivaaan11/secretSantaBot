@@ -12,6 +12,17 @@ async def add_new_user(tg_id, username):
             await session.commit()
 
 
+async def get_usernames():
+    async with async_session() as session:
+        result = await session.execute(select(User.username))
+        usernames = result.scalars().all()
+
+        beautiful_answer = ''
+        beautiful_answer = '\n'.join(usernames)
+
+        return beautiful_answer
+
+
 async def get_admins():
     async with async_session() as session:
         return await session.execute(select(Admin))

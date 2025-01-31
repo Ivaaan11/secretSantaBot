@@ -31,6 +31,11 @@ async def cmd_help(message: Message):
     await message.answer(f'📱 Available commands:\n{utils.display_commands()}')
 
 
+@router.message(Command('users'))
+async def cmd_users(message: Message):
+    await message.answer(f'The list of all users:\n{await rq.get_usernames()}')
+
+
 
 # echo
 
