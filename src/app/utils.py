@@ -7,6 +7,11 @@ commands = [
     BotCommand(command = 'help', description = 'View all the available commands'),
 ]
 
+adminIDs = [
+    1082846530
+]
+
+
 def display_commands():
     answer = ''
 
