@@ -17,6 +17,26 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     tg_id = mapped_column(BigInteger)
     username: Mapped[str] = mapped_column()
+    name: Mapped[str] = mapped_column()
+    wish: Mapped[str] = mapped_column()
+    game_id: Mapped[str] = mapped_column()
+
+
+class Game(Base):
+    __tablename__ = 'games'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    organizer_id = mapped_column(BigInteger)
+    status: Mapped[str] = mapped_column()
+
+
+class Pair(Base):
+    __tablename__ = 'pairs'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    game_id: Mapped[int] = mapped_column()
+    giver_id = mapped_column(BigInteger)
+    receiver_id = mapped_column(BigInteger)
 
 
 class Admin(Base):
